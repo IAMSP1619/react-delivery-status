@@ -1,7 +1,11 @@
 body{
   width: 100%;
   height: 100%;
+  
   background-color: whitesmoke;
+  margin: 0;
+  padding: 0;
+  
 }
 #time{
   position: fixed;
@@ -12,3 +16,15 @@ body{
   padding: 6px 12px;
   
 }
+#inputpage{
+  background-color: blueviolet;
+  
+}
+#regards{
+  color: black;
+  
+}
+#regards pre{
+  font-size: large;
+}
+
