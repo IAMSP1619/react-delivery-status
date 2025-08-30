@@ -25,64 +25,117 @@ const OutputPage = ({ rows, fixedOutputs, selectedDate }) => {
 
   return (
     <>
-    <div style={{ padding: 20, position: "relative", minHeight: "100vh" }}>
-      
-      {/* Top-right Date-Time */}
-      {selectedDate && (
-        <div style={{ position: "fixed", top: "10px", right: "10px", fontSize: 14, fontWeight: "bold", padding:"6px 12px " }}>
-          {formatDate(selectedDate)}
-        </div>
-      )}
-
-      {/* <h6 style={{ position:"fixed", bottom:"10px", right:"10px", margin:0 }}>O</h6> */}
-      <Link to="/" style={{ position:"fixed", bottom:"25px", right:"15px", textDecoration:"none" }}>O</Link>
-
-      {/* Show Text + Notes */}
-      <div>
-        {fixedOutputs.map((out, i) => (
-          <div key={i} style={{ marginBottom: "10px" }}>
-            {out.text && <p>{out.text}</p>}
-            {out.note && <p>Note: {out.note}</p>}
-            
+      <div style={{ padding: 20, position: "relative", minHeight: "100vh" }}>
+        {/* Top-right Date-Time */}
+        {selectedDate && (
+          <div
+            style={{
+              position: "fixed",
+              top: "10px",
+              right: "10px",
+              fontSize: 14,
+              fontWeight: "bold",
+              padding: "6px 12px ",
+            }}
+          >
+            {formatDate(selectedDate)}
           </div>
-        ))}
+        )}
+
+        {/* Back Link */}
+        <Link
+          to="/"
+          style={{
+            position: "fixed",
+            bottom: "25px",
+            right: "15px",
+            textDecoration: "none",
+          }}
+        >
+          O
+        </Link>
+
+        {/* Show Text + Notes */}
+        <div>
+          {fixedOutputs.map((out, i) => (
+            <div
+              key={i}
+              style={{
+                marginBottom: "10px",
+                whiteSpace: "pre-line",
+                wordWrap: "break-word",
+                maxWidth: "600px", // ✅ text boxes remain unchanged
+              }}
+            >
+              {out.text && <p>{out.text}</p>}
+              {out.note && <p style={{ color: "blue" }}>Note: {out.note}</p>}
+            </div>
+          ))}
+        </div>
+
+        {/* Show Package Table */}
+        <table border="1" style={{ borderCollapse: "collapse", width: "90%" }}>
+          <thead style={{ backgroundColor: "pink" }}>
+            <tr>
+              <th>Package</th>
+              <th>Version</th>
+              <th>Status</th>
+              <th>Remarks</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row, index) => (
+              <tr key={index}>
+                <td>{row.package}</td>
+                <td style={{ whiteSpace: "nowrap", padding: "0 20px" }}>
+                  {row.version}
+                </td>
+                <td
+                  style={{
+                    color: getStatusColor(row.status),
+                    fontWeight: "bold",
+                  }}
+                >
+                  {row.status}
+                </td>
+                {/* ✅ Only Remarks column updated */}
+                <td
+                  style={{
+                    whiteSpace: "pre-wrap",
+                    maxWidth: "300px",  // increased width
+                    wordWrap: "break-word",
+                  }}
+                >
+                  {row.remarks}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
 
-
-      {/* Show Package Table */}
-      <table border="1" style={{ borderCollapse: "collapse", width: "40%" }}>
-        <thead style={{ backgroundColor: "pink" }}>
-          <tr>
-            <th>Package</th>
-            <th>Version</th>
-            <th>Status</th>
-            <th>Remarks</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, index) => (
-            <tr key={index}>
-              <td>{row.package}</td>
-              <td>{row.version}</td>
-              <td style={{ color: getStatusColor(row.status), fontWeight: "bold" }}>
-                {row.status}
-              </td>
-              <td>{row.remarks}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  <div>
-        {fixedOutputs.map((out, i) => (
-          <div key={i} style={{ color:"black", fontWeight:"bold"}}>
-            {out.text1 && <p>{out.text1}</p>}
-            
-          </div>
-        ))}
+      {/* Extra text1 Output */}
+      <div>
+        {fixedOutputs.map(
+          (out, i) =>
+            out.text1 && (
+              <div
+                key={i}
+                style={{
+                  color: "black",
+                  fontWeight: "bold",
+                  whiteSpace: "pre-line",
+                  
+                  
+                  
+                }}
+              >
+                {out.text1}
+              </div>
+            )
+        )}
       </div>
     </>
-    
   );
 };
 
