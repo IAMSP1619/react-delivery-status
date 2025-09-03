@@ -3,12 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const InputPage = ({ setRows, setFixedOutputs, setSelectedDate }) => {
-  const [form, setForm] = useState({
-    package: "",
-    version: "",
-    status: "",
-    remarks: "",
-  });
+  const [form, setForm] = useState({package: "", version: "", status: "", remarks: "",});
   const [text, setText] = useState("");
   const [note, setNote] = useState("");
   const [datetime, setDatetime] = useState("");
@@ -74,21 +69,12 @@ const InputPage = ({ setRows, setFixedOutputs, setSelectedDate }) => {
           />
           <br />
           <br />
-          <button onClick={handleFix} style={{ backgroundColor: "yellow" }}>
-            Submit Input
-          </button>
+          <button onClick={handleFix} style={{ backgroundColor: "yellow" }}>Submit Input</button>
         </div>
         <br />
 
         {/* Package Form in one line */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            marginTop: "10px",
-          }}
-        >
+        <div style={{display: "flex", alignItems: "center", gap: "10px", marginTop: "10px",}}>
           <input
             type="text"
             name="package"
@@ -109,7 +95,7 @@ const InputPage = ({ setRows, setFixedOutputs, setSelectedDate }) => {
             <option value="Ready for Delivery">Ready for Delivery</option>
             <option value="Pending">Pending</option>
           </select>
-          {/* ✅ Remarks inline */}
+          {/*  Remarks inline */}
           <textarea
             name="remarks"
             placeholder="Remarks"
@@ -118,9 +104,7 @@ const InputPage = ({ setRows, setFixedOutputs, setSelectedDate }) => {
             rows={2}
             style={{ width: "200px" }}
           />
-          <button onClick={handleSubmit} style={{ backgroundColor: "yellow" }}>
-            Add
-          </button>
+          <button onClick={handleSubmit} style={{ backgroundColor: "yellow" }}>Add</button>
         </div>
 
         {/* Extra text1 input */}
@@ -135,9 +119,7 @@ const InputPage = ({ setRows, setFixedOutputs, setSelectedDate }) => {
 
         <button
           onClick={handleGoToOutput}
-          style={{ backgroundColor: "yellow", marginTop: "10px" }}
-        >
-          Submit
+          style={{ backgroundColor: "yellow", marginTop: "10px" }}>Submit
         </button>
       </div>
     </div>

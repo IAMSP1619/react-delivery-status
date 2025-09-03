@@ -11,24 +11,8 @@ const App = () => {
 
   return (
     <Routes>
-      <Route 
-        path="/" 
-        element={
-          <InputPage 
-            setRows={setRows} 
-            setFixedOutputs={setFixedOutputs} 
-            setSelectedDate={setSelectedDate} 
-          />} 
-      />
-      <Route 
-        path="/output" 
-        element={
-          <OutputPage 
-            rows={rows} 
-            fixedOutputs={fixedOutputs} 
-            selectedDate={selectedDate} 
-          />} 
-      />
+      <Route path="/" element={<InputPage setRows={setRows} setFixedOutputs={setFixedOutputs} setSelectedDate={setSelectedDate} />} />
+      <Route path="/output" element={<OutputPage rows={rows} fixedOutputs={fixedOutputs} selectedDate={selectedDate} />} />
     </Routes>
   );
 };

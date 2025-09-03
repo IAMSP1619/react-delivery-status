@@ -43,19 +43,9 @@ const OutputPage = ({ rows, fixedOutputs, selectedDate }) => {
         )}
 
         {/* Back Link */}
-        <Link
-          to="/"
-          style={{
-            position: "fixed",
-            bottom: "25px",
-            right: "15px",
-            textDecoration: "none",
-          }}
-        >
-          O
-        </Link>
+        <Link to="/"style={{position: "fixed",bottom: "25px",right: "15px",textDecoration: "none",}}>O</Link>
 
-        {/* Show Text + Notes */}
+        {/* Show Text + Notes (full width) */}
         <div>
           {fixedOutputs.map((out, i) => (
             <div
@@ -64,46 +54,51 @@ const OutputPage = ({ rows, fixedOutputs, selectedDate }) => {
                 marginBottom: "10px",
                 whiteSpace: "pre-line",
                 wordWrap: "break-word",
-                maxWidth: "600px", // ✅ text boxes remain unchanged
+                width: "100%", // Full width
               }}
             >
               {out.text && <p>{out.text}</p>}
-              {out.note && <p style={{ color: "blue" }}>Note: {out.note}</p>}
+              {out.note && (
+                <p style={{color:"black"}}>
+                    <span style={{fontWeight:"bold"}}>Note: </span>{out.note}
+                </p>
+              )}
             </div>
           ))}
         </div>
 
         {/* Show Package Table */}
-        <table border="1" style={{ borderCollapse: "collapse", width: "90%" }}>
+        <table border="1" style={{ borderCollapse: "collapse" }}>
           <thead style={{ backgroundColor: "pink" }}>
             <tr>
-              <th>Package</th>
-              <th>Version</th>
-              <th>Status</th>
-              <th>Remarks</th>
+              <th style={{ padding: "4px 10px" }}>Package</th>
+              <th style={{ padding: "4px 10px" }}>Version</th>
+              <th style={{ padding: "4px 10px" }}>Status</th>
+              <th style={{ width: "300px" }}>Remarks</th> {/* Fixed width */}
             </tr>
           </thead>
           <tbody>
             {rows.map((row, index) => (
               <tr key={index}>
-                <td>{row.package}</td>
-                <td style={{ whiteSpace: "nowrap", padding: "0 20px" }}>
+                <td style={{ padding: "4px 10px" }}>{row.package}</td>
+                <td style={{ whiteSpace: "nowrap", padding: "4px 10px" }}>
                   {row.version}
                 </td>
                 <td
                   style={{
                     color: getStatusColor(row.status),
                     fontWeight: "bold",
+                    padding: "4px 10px",
                   }}
                 >
                   {row.status}
                 </td>
-                {/* ✅ Only Remarks column updated */}
+                {/* Remarks column locked at 300px */}
                 <td
                   style={{
                     whiteSpace: "pre-wrap",
-                    maxWidth: "300px",  // increased width
                     wordWrap: "break-word",
+                    width: "300px",
                   }}
                 >
                   {row.remarks}
@@ -125,9 +120,6 @@ const OutputPage = ({ rows, fixedOutputs, selectedDate }) => {
                   color: "black",
                   fontWeight: "bold",
                   whiteSpace: "pre-line",
-                  
-                  
-                  
                 }}
               >
                 {out.text1}
